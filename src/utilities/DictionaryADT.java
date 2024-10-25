@@ -18,8 +18,8 @@ public interface DictionaryADT<K,V>
 	 * 
 	 * @param key the inserted key
 	 * @param value the inserted value that is paired with the key
-	 * @exception NullArgument thrown when the key or the value is null
-	 * @exception DuplicatedKey thrown when the inserted key already exists
+	 * @exception NullArgumentException thrown when the key or the value is null
+	 * @exception DuplicatedKeyException thrown when the inserted key already exists
 	 */
 	void insert(K key, V value);
 	
@@ -27,7 +27,7 @@ public interface DictionaryADT<K,V>
 	 * Remove a pair in the dictionary based on the key
 	 * 
 	 * @param key the key to be removed
-	 * @exception NullArgument thrown when the key or the value is null
+	 * @exception NullArgumentException thrown when the key or the value is null
 	 */
 	V remove(K key);
 	
@@ -36,7 +36,7 @@ public interface DictionaryADT<K,V>
 	 * 
 	 * @param key the existing key
 	 * @param value the value to be updated
-	 * @exception NullArgument thrown when the key or the value is null
+	 * @exception NullArgumentException thrown when the key or the value is null
 	 */
 	V update(K key, V value);
 	
@@ -44,7 +44,7 @@ public interface DictionaryADT<K,V>
 	 * Look up a value based on the key
 	 * 
 	 * @param key the key to be found
-	 * @exception NullArgument thrown when the key or the value is null
+	 * @exception NullArgumentException thrown when the key or the value is null
 	 */
 	V find(K key);
 }

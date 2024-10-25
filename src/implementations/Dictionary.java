@@ -1,8 +1,9 @@
 package implementations;
 
 import java.util.ArrayList;
-
 import utilities.DictionaryADT;
+import exceptions.NullArgumentException;
+import exceptions.DuplicatedKeyException;
 
 public class Dictionary<K,V> implements DictionaryADT<K,V>
 {
@@ -15,9 +16,25 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 	
 	// constructor
 	public Dictionary() {
-		this.keys = new ArrayList<>(DEFAULT_SIZE);
-		this.values = new ArrayList<>(DEFAULT_SIZE);
+		this.setKeys(new ArrayList<>(DEFAULT_SIZE));
+		this.setValues(new ArrayList<>(DEFAULT_SIZE));
 	}
+	
+	// keys and values getters and setters
+	public ArrayList<K> getKeys() {
+		return keys;
+	}
+	public void setKeys(ArrayList<K> keys) {
+		this.keys = keys;
+	}
+	public ArrayList<V> getValues() {
+		return values;
+	}
+	public void setValues(ArrayList<V> values) {
+		this.values = values;
+	}
+	
+	
 	@Override
 	public void insert(K key, V value) {
 		// TODO Auto-generated method stub
@@ -38,5 +55,7 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 
 }
