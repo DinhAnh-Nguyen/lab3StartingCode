@@ -1,5 +1,9 @@
 package utilities;
 
+import exceptions.DuplicatedKeyException;
+import exceptions.NullKeyException;
+import exceptions.NullValueException;
+
 /**
 * DictionaryADT.java
 *
@@ -21,15 +25,16 @@ public interface DictionaryADT<K,V>
 	 * @exception NullArgumentException thrown when the key or the value is null
 	 * @exception DuplicatedKeyException thrown when the inserted key already exists
 	 */
-	void insert(K key, V value);
+	void insert(K key, V value) throws NullKeyException, NullValueException, DuplicatedKeyException;
 	
 	/**
 	 * Remove a pair in the dictionary based on the key
 	 * 
 	 * @param key the key to be removed
 	 * @exception NullArgumentException thrown when the key or the value is null
+	 * @return removed key
 	 */
-	V remove(K key);
+	V remove(K key) throws NullKeyException, NullValueException;
 	
 	/**
 	 * Update the value of an existing key
@@ -37,14 +42,16 @@ public interface DictionaryADT<K,V>
 	 * @param key the existing key
 	 * @param value the value to be updated
 	 * @exception NullArgumentException thrown when the key or the value is null
+	 * @return new value
 	 */
-	V update(K key, V value);
+	V update(K key, V value) throws NullKeyException, NullValueException;
 	
 	/**
 	 * Look up a value based on the key
 	 * 
 	 * @param key the key to be found
 	 * @exception NullArgumentException thrown when the key or the value is null
+	 * @return the index of the desired key
 	 */
-	V find(K key);
+	V find(K key) throws NullKeyException, NullValueException;
 }
