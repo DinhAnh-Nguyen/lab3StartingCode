@@ -2,7 +2,8 @@ package implementations;
 
 import java.util.ArrayList;
 import utilities.DictionaryADT;
-import exceptions.NullArgumentException;
+import exceptions.NullKeyException;
+import exceptions.NullValueException;
 import exceptions.DuplicatedKeyException;
 
 public class Dictionary<K,V> implements DictionaryADT<K,V>
@@ -36,9 +37,10 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 	
 	
 	@Override
-	public void insert(K key, V value) {
-		// TODO Auto-generated method stub
-		
+	public void insert(K key, V value) throws NullKeyException {
+		if (key == null || value == null) {
+			throw new NullKeyException();
+		}
 	}
 	@Override
 	public V remove(K key) {
