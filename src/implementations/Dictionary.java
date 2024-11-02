@@ -2,67 +2,51 @@ package implementations;
 
 import java.util.ArrayList;
 import utilities.DictionaryADT;
-import exceptions.NullKeyException;
-import exceptions.NullValueException;
-import exceptions.DuplicatedKeyException;
+import exceptions.DuplicateKeyException;
 
 // Author: Dinh Anh Nguyen, Mark Bui
 
 public class Dictionary<K,V> implements DictionaryADT<K,V>
 {
-	// constant
+	// Constant
 	private static final int DEFAULT_SIZE = 10;
 	
-	// index indicates pairing, e.g. keys[1] is stored at values[1]
+	// Index indicates pairing, e.g. keys[1] is stored at values[1]
 	private ArrayList<K> keys;
 	private ArrayList<V> values;
 	
-	// constructor
-	public Dictionary() {
-		this.setKeys(new ArrayList<>(DEFAULT_SIZE));
-		this.setValues(new ArrayList<>(DEFAULT_SIZE));
+	public Dictionary(int i) {
+		keys = new ArrayList<>(i);
+	    values = new ArrayList<>(i);
 	}
 	
-	// keys and values getters and setters
-	public ArrayList<K> getKeys() {
-		return keys;
+	public Dictionary() {
+		this(DEFAULT_SIZE);
 	}
-	public void setKeys(ArrayList<K> keys) {
-		this.keys = keys;
-	}
-	public ArrayList<V> getValues() {
-		return values;
-	}
-	public void setValues(ArrayList<V> values) {
-		this.values = values;
+	
+	@Override
+	public void create(int size) {
+		keys = new ArrayList<>(size);
+        values = new ArrayList<>(size);
+		
 	}
 	
 	// Method for inserting a new key - value pair with an unique key
 	@Override
-	public void insert(K key, V value) throws NullKeyException, NullValueException, DuplicatedKeyException {
-		if (key == null) {
-			throw new NullKeyException();
-		}
-		
-		if (value == null) {
-			throw new NullValueException();
-		}
-		
+	public boolean insert(K key, V value) throws DuplicateKeyException {		
 		if (keys.contains(key)) {
-			throw new DuplicatedKeyException("Error! " + key + " already existed.");
+			throw new DuplicateKeyException("Error! " + key + " already existed.");
 		}
 		
 		keys.add(key);
 		values.add(value);
+		
+		return true;
 	}
 	
 	// Method for removing a key - value pair based on the key
 	@Override
-	public V remove(K key) throws NullKeyException {
-		if (key == null) {
-			throw new NullKeyException();
-		}
-		
+	public V remove(K key) {
 		int i = keys.indexOf(key);
 		if (i == -1) {
 			System.out.println("Key not found. Try again.");
@@ -74,18 +58,26 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 		return removedValue;
 	}
 	
+	// Method for updating a key - value pair from the dictionary
 	@Override
-	public V update(K key, V value) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean update(K key, V value) {
+		int i = keys.indexOf(key);
+		if (i == -1) {
+			System.out.println("Key not found. Try again.");
+		}
+		
+		values.set(i, value);
+		return true;
 	}
 	
+	// Method for retrieving the value of a key from the Dictionary.
 	@Override
-	public V find(K key) {
-		// TODO Auto-generated method stub
-		return null;
+	public V lookup(K key) {
+		int i = keys.indexOf(key);
+		if (i == -1) {
+			System.out.println("Key not found. Try again.");
+		}
+		
+		return values.get(i);
 	}
-	
-	
-
 }
