@@ -51,6 +51,7 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 		int i = keys.indexOf(key);
 		if (i == -1) {
 			System.out.println("Key not found. Try again.");
+			return null;
 		}
 		
 		V removedValue = values.get(i);
@@ -65,6 +66,7 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 		int i = keys.indexOf(key);
 		if (i == -1) {
 			System.out.println("Key not found. Try again.");
+			return false;
 		}
 		
 		values.set(i, value);
@@ -77,6 +79,7 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 		int i = keys.indexOf(key);
 		if (i == -1) {
 			System.out.println("Key not found. Try again.");
+			return null;
 		}
 		
 		return values.get(i);
