@@ -24,6 +24,7 @@ public class Dictionary<K,V> implements DictionaryADT<K,V>
 		this(DEFAULT_SIZE);
 	}
 	
+	// Method for creating a new dictionary object
 	@Override
 	public void create(int size) {
 		keys = new ArrayList<>(size);
